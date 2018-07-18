@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Quicksand');
+
+/* ========= Main CSS variables ======= */
+:root {
+  --sea-blue: #05668D;
+  --metallic-seaweed: #028090;
+  --persian-green: #00A896;
+  --caribbean-green: #02C39A;
+  --pale-spring-bud: #F0F3BD;
+  --sea-foam-green: #B2DBBF;
+  --awesome: #FF1654;
+  --main-font-size: 20px;
+  --main-padding: 2%;
+  --main-margin: 3%;
+  --big-padding: 5%;
+  --big-margin: 8%;
+}
+
+/* ========= General classes ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+	font-size: var(--main-font-size);
+  color: var(--sea-blue);
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.pacifico {
+  font-family: 'Pacifico', cursive;
+}
+
+/* ======= Flexboxes ====== */
+header {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ======== Heading ========= */
+header {
+  width: 100%;
+  background-color: var(--pale-spring-bud);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: var(--big-padding);
+}
+
+header h2 {
+  line-height: 1em;
+  text-align: center;
+}
+
+header .pacifico {
+  font-size: 1.5em;
+  color: var(--awesome);
+}
+
+header a {
+  padding-top: var(--main-padding);
+  transition: 0.3s;
+}
+
+header a:hover,
+header a:focus {
+  transform: scale(1.15);
+  outline: 0;
+}
+
+/*========= Hidden list of places style ===========*/
+nav {
+  width: 100%;
+  height: 55px;
+  background: var(--sea-blue);
+  color: var(--pale-spring-bud);
+  transition: 0.5s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+nav.hidden {
+  height: 10px;
+}
+
+nav svg {
+  padding: 7.5px 25px;
+  height: 55px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav svg:hover,
+nav svg:focus {
+  transform: scale(1.15);
+  outline: 0;
+}
+
+nav svg.hidden {
+  display: none;
+}
+
+#sidenav {
+  height: 100vh;
+  width: 280px;
+  position: fixed;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  background-color: var(--sea-foam-green);
+  overflow: auto;
+  transition: 0.5s;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+#sidenav.hide {
+  transform: translate3d(-280px, 0, 0);
+}
+
+#sidenav.show {
+  transform: translate3d(0vw, 0, 0);
+}
+
+#sidenav button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--sea-blue);
+  color: var(--sea-foam-green);
+  font-size: 1.2em;
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#sidenav button:hover,
+#sidenav button:focus {
+  background-color: var(--caribbean-green);
+  color: var(--sea-blue);
+  outline: 0;
+}
+
+#sidenav p {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-bottom: var(--big-padding);
+  padding-right: var(--big-padding);
+  padding-left: var(--big-padding);
+}
+
+.search-wrapper input {
+  border: 0;
+  width: 235px;
+  font-size: 0.8em;
+  padding: var(--big-padding);
+  color: var(--sea-blue);
+  background: var(--pale-spring-bud);
+  transition: 0.3s;
+}
+
+.search-wrapper svg {
+  padding: 7.5px;
+}
+
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: var(--big-margin) 0;
+  height: 50px;
+  background: var(--pale-spring-bud);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.search-wrapper input:hover,
+.search-wrapper input:focus {
+  outline: 0;
+  background-color: var(--caribbean-green);
+}
+
+#sidenav ul {
+  padding: var(--big-padding);
+  text-align: right;
+}
+
+#sidenav li {
+  padding: var(--big-padding);
+  text-decoration: none;
+  font-size: 0.85em;
+  transition: 0.3s;
+  list-style-type: none;
+  cursor: pointer;
+  border-bottom: 1px solid var(--metallic-seaweed);
+}
+
+#sidenav li:hover,
+#sidenav li:focus {
+  background-color: var(--caribbean-green);
+  outline: 0;
+}
+
+/*======== Responsivness =======*/
+@media screen and (min-width: 650px) {
+  :root {
+    --main-padding: 1%;
+    --main-margin: 2%;
+    --big-padding: 3%;
+    --big-margin: 6%;
+  }
+
+  header {
+    flex-flow: row wrap;
+  }
+
+  header h2 {
+    flex: 100%;
+  }
+
+  header .pacifico {
+    margin-top: 25px;
+  }
+
+  #main-view.slide {
+    margin-left: 270px;
+    transition: margin-left 0.5s;
+  }
+
+  #main-view.unslide {
+    margin-left: 0;
+    transition: margin-right 0.5s;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  :root {
+    --main-font-size: 19px;
+  }
+
+  header a:hover,
+  header a:focus {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  :root {
+    --main-margin: 1.2%;
+    --big-padding: 2.5%;
+    --big-margin: 2.5%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+}
