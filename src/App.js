@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Heading from './components/Heading';
+import Footer from './components/Footer';
 import MenuContainer from './components/MenuContainer';
-import { Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
                   </g>
                 </svg>
               </nav>
+              <Footer />
             </div>
           </div>
         )}/>
