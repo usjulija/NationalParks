@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       visible: false,
       mylocations: require("./data/places.json"), // Get the places from the JSON file in data folder
+      markers: []
     };
     this.toggleNavMenu = this.toggleNavMenu.bind(this);
   }
@@ -63,12 +64,16 @@ class App extends Component {
         zoom: 4,
         center: uluru
       });
+      this.setState({map:map});
 
       let markers = [];
       this.state.mylocations.forEach((item) => {
         let position = item.latlng;
         let title = item.name;
         let markerID = item.id;
+        var infowindow = new google.maps.InfoWindow({
+          content: item.name
+        });
 
         let marker = new google.maps.Marker({
           map: map,
@@ -80,10 +85,14 @@ class App extends Component {
 
         // Push the marker to the array of markers.
         markers.push(marker);
-      })
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      });
+      this.setState({ markers: markers });
+      console.log(this.state.markers);
     });
   }
-
 
   render() {
     let sliding = this.state.visible === true ? "slide" : "unslide";
