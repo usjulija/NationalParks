@@ -1,0 +1,164 @@
+{
+  "national_parks": [
+  {
+    "id": 1,
+    "name": "Plitvice Lakes",
+    "neighborhood": "Croatia",
+    "latlng": {
+      "lat": 44.865397,
+      "lng": 15.582012
+    }
+  }, {
+    "id": 2,
+    "name": "Triglav",
+    "neighborhood": "Slovenia",
+    "latlng": {
+      "lat": 46.334183,
+      "lng": 13.828692
+    }
+  }, {
+    "id": 3,
+    "name": "Goreme",
+    "neighborhood": "Turkey",
+    "latlng": {
+      "lat": 38.643056,
+      "lng": 34.828889
+    }
+  }, {
+    "id": 4,
+    "name": "Ordesa",
+    "neighborhood": "Spain",
+    "latlng": {
+      "lat": 42.646870,
+      "lng": 0.034900
+    }
+  }, {
+    "id": 5,
+    "name": "Belluno Dolomites",
+    "neighborhood": "Italy",
+    "latlng": {
+      "lat": 46.169919,
+      "lng": 12.036645
+    }
+  }, {
+    "id": 6,
+    "name": "Vatnajökull",
+    "neighborhood": "Iceland",
+    "latlng": {
+      "lat": 64.784300,
+      "lng": -17.209108
+    }
+  }, {
+    "id": 7,
+    "name": "Saxon Switzerland",
+    "neighborhood": "Germany",
+    "latlng": {
+      "lat": 50.914524,
+      "lng": 14.281172
+    }
+  }, {
+    "id": 8,
+    "name": "Durmitor",
+    "neighborhood": "Montenegro",
+    "latlng": {
+      "lat": 43.149618,
+      "lng": 19.089581
+    }
+  }, {
+    "id": 9,
+    "name": "Oulanka",
+    "neighborhood": "Finland",
+    "latlng": {
+      "lat": 66.374572,
+      "lng": 29.322234
+    }
+  }, {
+    "id": 10,
+    "name": "Écrins",
+    "neighborhood": "France",
+    "latlng": {
+      "lat": 44.838790,
+      "lng": 6.262055
+    }
+  }, {
+    "id": 11,
+    "name": "Sarek",
+    "neighborhood": "Sweden",
+    "latlng": {
+      "lat": 67.283333,
+      "lng": 17.700000
+    }
+  }, {
+    "id": 12,
+    "name": "Cinque Terre",
+    "neighborhood": "Italy",
+    "latlng": {
+      "lat": 44.148772,
+      "lng": 9.654408
+    }
+  }, {
+    "id": 13,
+    "name": "Loch Lomond and The Trossachs",
+    "neighborhood": "Scotland",
+    "latlng": {
+      "lat": 56.111368,
+      "lng": -4.628860
+    }
+  }, {
+    "id": 14,
+    "name": "Black Forest",
+    "neighborhood": "Germany",
+    "latlng": {
+      "lat": 48.502240,
+      "lng": 8.375380
+    }
+  }, {
+    "id": 15,
+    "name": "Pembrokeshire",
+    "neighborhood": "Wales",
+    "latlng": {
+      "lat": 51.812224,
+      "lng": -5.097453
+    }
+  }, {
+    "id": 16,
+    "name": "Hohe Tauern",
+    "neighborhood": "Austria",
+    "latlng": {
+      "lat": 47.166638,
+      "lng": 12.499831
+    }
+  }, {
+    "id": 17,
+    "name": "Cheile Nerei Beusnita",
+    "neighborhood": "Romania",
+    "latlng": {
+      "lat": 44.955844,
+      "lng": 21.887790
+    }
+  }, {
+    "id": 18,
+    "name": "Mljet",
+    "neighborhood": "Croatia",
+    "latlng": {
+      "lat": 42.747771,
+      "lng": 17.515014
+    }
+  }, {
+    "id": 19,
+    "name": "Swiss National Park",
+    "neighborhood": "Switzerland",
+    "latlng": {
+      "lat": 46.666591,
+      "lng": 10.199904
+    }
+  }, {
+    "id": 20,
+    "name": "Rago",
+    "neighborhood": "Norway",
+    "latlng": {
+      "lat": 60.472024,
+      "lng": 8.468946
+    }
+  }
+]}
