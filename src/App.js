@@ -59,13 +59,13 @@ class App extends Component {
   componentDidMount() {
     // Once the Google Maps API has finished loading, initializes the map
     this.getGoogleMaps().then((google) => {
-      const uluru = {lat: 54.5260, lng: 15.2551};
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        center: uluru
+        center: {lat: 54.5260, lng: 15.2551}
       });
       this.setState({map:map});
 
+      let bounds = new google.maps.LatLngBounds();
       let markers = [];
       this.state.mylocations.forEach((item) => {
         let position = item.latlng;
@@ -88,9 +88,10 @@ class App extends Component {
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+        bounds.extend(marker.position);
       });
       this.setState({ markers: markers });
-      console.log(this.state.markers);
+      map.fitBounds(bounds);
     });
   }
 
