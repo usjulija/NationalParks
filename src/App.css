@@ -221,6 +221,11 @@ nav svg.hidden {
   outline: 0;
 }
 
+/*========== Map ===========*/
+#map {
+  width: 100%;
+  height: 80vh;
+}
 
 /*========= Footer ========*/
 footer {
