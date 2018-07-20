@@ -5,6 +5,8 @@ import './App.css';
 import Heading from './components/Heading';
 import Footer from './components/Footer';
 import MenuContainer from './components/MenuContainer';
+import defaultMarker from './icons/defaultMarker.png';
+import hoverMarker from './icons/hoverMarker.png';
 
 class App extends Component {
 
@@ -13,11 +15,15 @@ class App extends Component {
     this.state = {
       visible: false,
       mylocations: require("./data/places.json"), // Get the places from the JSON file in data folder
-      markers: []
+      markers: [],
+      map: {},
+      infowindow: ''
     };
     this.toggleNavMenu = this.toggleNavMenu.bind(this);
+    this.markerSelect = this.markerSelect.bind(this);
   }
 
+  //makes sidebar menu visible & invisible
   toggleNavMenu() {
     this.setState({
         visible: !this.state.visible
@@ -57,42 +63,88 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //initializes the map
+    this.initMap();
+  }
+
+  markerSelect(marker) {
+    this.state.infowindow.open(this.state.map, marker);
+    this.state.infowindow.setContent(marker.title);
+    // this.state.map.panBy(0, -200);
+}
+
+  initMap() {
     // Once the Google Maps API has finished loading, initializes the map
+    let map;
     this.getGoogleMaps().then((google) => {
-      const map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        center: {lat: 54.5260, lng: 15.2551}
+        center: {lat: 54.5260, lng: 15.2551},
+        styles: [
+              {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+              {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+              {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#028090'}]
+              },
+              {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#B2DBBF'}]
+              }
+            ],
+        mapTypeControl: false,
+        scrollwheel: false
       });
-      this.setState({map:map});
-
-      let bounds = new google.maps.LatLngBounds();
-      let markers = [];
-      this.state.mylocations.forEach((item) => {
-        let position = item.latlng;
-        let title = item.name;
-        let markerID = item.id;
-        var infowindow = new google.maps.InfoWindow({
-          content: item.name
-        });
-
-        let marker = new google.maps.Marker({
-          map: map,
-          position: position,
-          title: title,
-          animation: google.maps.Animation.DROP,
-          id: markerID
-        });
-
-        // Push the marker to the array of markers.
-        markers.push(marker);
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-        bounds.extend(marker.position);
-      });
-      this.setState({ markers: markers });
-      map.fitBounds(bounds);
+      var infowindow = new google.maps.InfoWindow({});
+      this.setState({ map: map, infowindow: infowindow });
+      this.generateMarkers(map);
     });
+  }
+
+  generateMarkers(map) {
+    let self = this;
+    let bounds = new google.maps.LatLngBounds();
+    let markers = [];
+
+    //loops over the places and adds markers
+    this.state.mylocations.forEach((item) => {
+      let position = item.latlng;
+      let title = item.name + ', ' +item.neighborhood;
+      let markerID = item.id;
+
+      let marker = new google.maps.Marker({
+        map: map,
+        position: position,
+        title: title,
+        animation: google.maps.Animation.DROP,
+        icon: defaultMarker,
+        id: markerID
+      });
+
+      //Push marker to the array of markers
+      markers.push(marker);
+
+      //Opens infowindow on click
+      marker.addListener('click', function() {
+        self.markerSelect(marker);
+      });
+      //Changes the marker icon on hover
+      marker.addListener('mouseover', function() {
+        this.setIcon(hoverMarker);
+      });
+      marker.addListener('mouseout', function() {
+        this.setIcon(defaultMarker);
+      });
+
+      //bounds map to the markers' position
+      bounds.extend(marker.position);
+    });
+    map.fitBounds(bounds);
+
+    this.setState({ markers: markers });
+    console.log(this.state.markers);
   }
 
   render() {
@@ -105,8 +157,11 @@ class App extends Component {
         <Route exact path="/" render={() => (
           <div>
             <MenuContainer
+              markers={this.state.markers}
+              infowindow={this.state.infowindow}
               onMouseDown={this.toggleNavMenu}
               visible={this.state.visible}
+              markerSelect={this.markerSelect}
             />
             <div id="main-view" className={sliding}>
               <Heading />
@@ -115,6 +170,7 @@ class App extends Component {
                   className={hiding}
                   tabIndex={tabindex}
                   onClick={this.toggleNavMenu}
+                  onKeyDown={this.toggleNavMenu}
                   role="button"
                   aria-label="open sidebar"
                   alt="menu icon"
@@ -127,7 +183,7 @@ class App extends Component {
                   </g>
                 </svg>
               </nav>
-              <div id="map"></div>
+              <div id="map" tabIndex="-1"></div>
               <Footer />
             </div>
           </div>

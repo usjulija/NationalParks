@@ -26,6 +26,7 @@
 body {
 	font-size: var(--main-font-size);
   color: var(--sea-blue);
+  background: var(--sea-blue);
 }
 
 a {
@@ -233,7 +234,7 @@ footer {
   color: var(--sea-foam-green);
   font-size: 0.5em;
   letter-spacing: 1.5px;
-  padding: var(--big-padding);
+  padding: var(--main-padding);
   text-align: center;
 	width: 100%;
   bottom: 0;

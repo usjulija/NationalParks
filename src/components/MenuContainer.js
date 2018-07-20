@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class MenuContainer extends Component {
+
   render() {
     let visibility = this.props.visible === true ? "show" : "hide";
     let tabindex = this.props.visible === true ? "0" : "-1";
@@ -28,26 +29,16 @@ class MenuContainer extends Component {
               placeholder="Search by name or country" />
           </div>
           <ul>
-            <li>Plitvice Lakes</li>
-            <li>Triglav</li>
-            <li>Goreme</li>
-            <li>Ordesa</li>
-            <li>Belluno Dolomites</li>
-            <li>Vatnajökull</li>
-            <li>Saxon Switzerland</li>
-            <li>Durmitor</li>
-            <li>Écrins</li>
-            <li>Oulanka</li>
-            <li>Sarek</li>
-            <li>Cinque Terre</li>
-            <li>Loch Lomond and The Trossachs</li>
-            <li>Black Forest</li>
-            <li>Pembrokeshire</li>
-            <li>Hohe Tauern</li>
-            <li>Cheile Nerei Beusnita</li>
-            <li>Mljet</li>
-            <li>Swiss</li>
-            <li>Rago, Norway</li>
+            {this.props.markers.map((marker) => (
+              <li
+                key={marker.id}
+                tabIndex={tabindex}
+                role="button"
+                aria-label="map-marker"
+                onKeyPress={this.props.markerSelect.bind(this, marker)}
+                onClick={this.props.markerSelect.bind(this, marker)}
+              >{marker.title}</li>
+            ))}
           </ul>
         </div>
       </div>
