@@ -31,6 +31,7 @@ class MenuContainer extends Component {
       })
       } else {
       showingPlaces = this.props.markers;
+      showingPlaces.forEach((item) => item.setVisible(true));
     }
 
     showingPlaces.sort(sortBy('title'));
