@@ -33,6 +33,8 @@ class MenuContainer extends Component {
       showingPlaces = this.props.markers;
     }
 
+    showingPlaces.sort(sortBy('title'));
+
     return (
       <div id="sidenav" className={visibility}>
         <button
