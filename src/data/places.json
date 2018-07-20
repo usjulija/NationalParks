@@ -80,6 +80,14 @@
       "lng": 6.262055
     }
   }, {
+    "id": 10,
+    "name": "Sarek",
+    "neighborhood": "Sweden",
+    "latlng": {
+      "lat": 67.283333,
+      "lng": 17.700000
+    }
+  }, {
     "id": 11,
     "name": "Cinque Terre",
     "neighborhood": "Italy",

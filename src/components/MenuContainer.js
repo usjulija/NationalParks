@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 class MenuContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    };
+  }
+
+  updateQuery = (query) => {
+    this.setState({ query: query.trim() })
+  }
 
   render() {
     let visibility = this.props.visible === true ? "show" : "hide";
     let tabindex = this.props.visible === true ? "0" : "-1";
+    let showingPlaces = [];
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), 'i');
+      showingPlaces = this.props.markers.filter((marker) => match.test(marker.title));
+      this.props.markers.map((marker) => {
+        marker.setVisible(false);
+        showingPlaces.forEach((item) => {
+          if(item.title === marker.title){
+            item.setVisible(true);
+          }
+        })
+      })
+      } else {
+      showingPlaces = this.props.markers;
+    }
 
     return (
       <div id="sidenav" className={visibility}>
@@ -26,10 +53,13 @@ class MenuContainer extends Component {
             <input
               tabIndex={tabindex}
               type="text"
-              placeholder="Search by name or country" />
+              placeholder="Search places"
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)}
+             />
           </div>
           <ul>
-            {this.props.markers.map((marker) => (
+            {showingPlaces.map((marker) => (
               <li
                 key={marker.id}
                 tabIndex={tabindex}
