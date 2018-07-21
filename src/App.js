@@ -14,10 +14,11 @@ class App extends Component {
     super(props);
     this.state = {
       visible: false,
-      mylocations: require("./data/places.json"), // Get the places from the JSON file in data folder
+      mylocations: require("./data/places.json"), // Gets the data from the places.JSON file
       markers: [],
       map: {},
-      infowindow: ''
+      infowindow: '',
+      data: []
     };
     this.toggleNavMenu = this.toggleNavMenu.bind(this);
     this.markerSelect = this.markerSelect.bind(this);
@@ -65,13 +66,45 @@ class App extends Component {
   componentDidMount() {
     //initializes the map
     this.initMap();
+    this.getDataWiki();
   }
 
+//opens infowindow and passes information
   markerSelect(marker) {
     this.state.infowindow.open(this.state.map, marker);
-    this.state.infowindow.setContent(marker.title);
     // this.state.map.panBy(0, -200);
-}
+    this.state.data.filter((item) => {
+      if(item.id === marker.id) {
+        this.state.infowindow.setContent(`<h2 class="center searchmatch">${marker.title}</h2><img src=${marker.image} alt=${marker.alt}/>
+          <p>${item.text}...</p>`);
+      }
+    })
+  }
+
+  getDataWiki() {
+    let newData = [];
+    this.state.mylocations.map((location) => {
+      return fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=extracts&titles&format=json&origin=*&srlimit=1&srsearch=${location.name}`, {
+          headers: {
+            'Origin': 'http://localhost:3000/',
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        })
+      .then(response => response.json())
+      .then(data => {
+        let url = encodeURI(`https://en.wikipedia.org/wiki/${data.query.search['0'].title}`);
+        let element = {
+          text: data.query.search['0'].snippet,
+          id: location.id,
+          url: url
+        };
+        newData.push(element);
+        this.setState({data: newData});
+        console.log(newData)
+  		})
+      .catch(() => console.log('An error occured'))
+    })
+  }
 
   initMap() {
     // Once the Google Maps API has finished loading, initializes the map
@@ -97,12 +130,13 @@ class App extends Component {
         mapTypeControl: false,
         scrollwheel: false
       });
-      var infowindow = new google.maps.InfoWindow({});
+      var infowindow = new google.maps.InfoWindow({maxWidth: 180});
       this.setState({ map: map, infowindow: infowindow });
       this.generateMarkers(map);
     });
   }
 
+  //loops over mylocations and generates markers on the map
   generateMarkers(map) {
     let self = this;
     let bounds = new google.maps.LatLngBounds();
@@ -113,6 +147,8 @@ class App extends Component {
       let position = item.latlng;
       let title = item.name + ', ' +item.neighborhood;
       let markerID = item.id;
+      let markerImage = item.imgSm;
+      let alt = item.alt;
 
       let marker = new google.maps.Marker({
         map: map,
@@ -120,7 +156,9 @@ class App extends Component {
         title: title,
         animation: google.maps.Animation.DROP,
         icon: defaultMarker,
-        id: markerID
+        id: markerID,
+        image: markerImage,
+        alt: alt
       });
 
       //Push marker to the array of markers

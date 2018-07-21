@@ -47,6 +47,14 @@ h2 {
   font-family: 'Pacifico', cursive;
 }
 
+.searchmatch {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
 /* ======= Flexboxes ====== */
 header {
   display: flex;
