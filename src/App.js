@@ -117,7 +117,7 @@ class App extends Component {
         mapTypeControl: false,
         scrollwheel: false
       });
-      var infowindow = new google.maps.InfoWindow({maxWidth: 450});
+      var infowindow = new google.maps.InfoWindow({maxWidth: 300});
       this.setState({ map: map, infowindow: infowindow });
       this.generateMarkers(map);
     });
@@ -177,9 +177,9 @@ class App extends Component {
       this.state.data.filter((item) => {
         if(item.id === marker.id) {
           this.state.infowindow.setContent(`<div class=marker>
+            <h1 class="pacifico center">${marker.title} </h1>
             <img class="marker-image" src=${marker.image} alt=${marker.alt}/>
             <div>
-              <h1 class="pacifico">${marker.title} </h1>
               <p>${item.text}...</p>
               <a rel="noopener noreferrer" href=${item.url} target="_blank">Read more</a>
             </div>
@@ -224,7 +224,7 @@ class App extends Component {
                   </g>
                 </svg>
               </nav>
-              <div id="map" tabIndex="-1"></div>
+              <div id="map" tabIndex="-1" aria-label="Map of national parks" role="presentation"></div>
               <Footer />
             </div>
           </div>
