@@ -13,12 +13,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      visible: false, //state of side nav-bar
       mylocations: require("./data/places.json"), // Gets the data from the places.JSON file
-      markers: [],
+      markers: [], //Markers array on the map
       map: {},
       infowindow: '',
-      data: []
+      data: [] //data array from wikipedia
     };
     this.toggleNavMenu = this.toggleNavMenu.bind(this);
     this.markerSelect = this.markerSelect.bind(this);
@@ -64,21 +64,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //initializes the map
+    //initializes the map and gets the data from wikipedia
     this.initMap();
     this.getDataWiki();
-  }
-
-//opens infowindow and passes information
-  markerSelect(marker) {
-    this.state.infowindow.open(this.state.map, marker);
-    // this.state.map.panBy(0, -200);
-    this.state.data.filter((item) => {
-      if(item.id === marker.id) {
-        this.state.infowindow.setContent(`<h2 class="center searchmatch">${marker.title}</h2><img src=${marker.image} alt=${marker.alt}/>
-          <p>${item.text}...</p>`);
-      }
-    })
   }
 
   getDataWiki() {
@@ -100,7 +88,6 @@ class App extends Component {
         };
         newData.push(element);
         this.setState({data: newData});
-        console.log(newData)
   		})
       .catch(() => console.log('An error occured'))
     })
@@ -130,7 +117,7 @@ class App extends Component {
         mapTypeControl: false,
         scrollwheel: false
       });
-      var infowindow = new google.maps.InfoWindow({maxWidth: 180});
+      var infowindow = new google.maps.InfoWindow({maxWidth: 450});
       this.setState({ map: map, infowindow: infowindow });
       this.generateMarkers(map);
     });
@@ -182,8 +169,24 @@ class App extends Component {
     map.fitBounds(bounds);
 
     this.setState({ markers: markers });
-    console.log(this.state.markers);
   }
+
+  //opens infowindow and passes information
+    markerSelect(marker) {
+      this.state.infowindow.open(this.state.map, marker);
+      this.state.data.filter((item) => {
+        if(item.id === marker.id) {
+          this.state.infowindow.setContent(`<div class=marker>
+            <img class="marker-image" src=${marker.image} alt=${marker.alt}/>
+            <div>
+              <h1 class="pacifico">${marker.title} </h1>
+              <p>${item.text}...</p>
+              <a rel="noopener noreferrer" href=${item.url} target="_blank">Read more</a>
+            </div>
+          </div>`);
+        }
+      })
+    }
 
   render() {
     let sliding = this.state.visible === true ? "slide" : "unslide";

@@ -236,6 +236,36 @@ nav svg.hidden {
   height: 80vh;
 }
 
+.marker {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--big-padding);
+}
+
+.marker p {
+  padding-top: var(--main-padding);
+  max-width: 250px;
+}
+
+.marker a {
+  position: absolute;
+  right: 10px;
+  border: 0;
+  background: var(--awesome);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.marker-image {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 /*========= Footer ========*/
 footer {
   background-color: var(--sea-blue);
