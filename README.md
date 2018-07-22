@@ -6,6 +6,7 @@ This is a project for Udacity Front-End Nanodegree program: the web-application,
 This is a single page app, displaying the most beautiful National Parks of Europe, the app is fully responsive and accessive.
 Project is built using react.js, data stored in json format. The following tools were used:
  * [React starter repository](https://github.com/facebook/create-react-app)
+ * The default service worker is used, therefore it will be available only on the production mode
  * [React router](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 * [Escape Regexp](https://github.com/sindresorhus/escape-string-regexp)
 * [Sort by](https://www.npmjs.com/package/sort-by)

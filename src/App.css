@@ -242,7 +242,7 @@ nav svg.hidden {
   align-items: center;
   justify-content: center;
   padding: var(--big-padding);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   max-width: 200px;
   overflow: hidden;
 }
@@ -259,6 +259,7 @@ nav svg.hidden {
   font-size: 1.5em;
 }
 .marker a {
+  font-size: 15px;
   position: absolute;
   right: 10px;
   border: 0;
@@ -266,6 +267,14 @@ nav svg.hidden {
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
+  transition: 0.3s;
+}
+
+.marker a:hover,
+.marker a:focus {
+  background: var(--persian-green);
+  transform: scale(1.15);
+  outline: 0;
 }
 
 .marker-image {
@@ -274,6 +283,45 @@ nav svg.hidden {
   overflow: hidden;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+#alternative-content {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#alternative-content svg {
+  max-height: 70vh;
+  max-width: 100vw;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
+
+#alternative-content p {
+  text-align: center;
+  padding-bottom: var(--main-padding);
+}
+
+#alternative-content h1 {
+  font-size: 1.7em;
+  padding-top: var(--big-padding);
 }
 /*========= Footer ========*/
 footer {
