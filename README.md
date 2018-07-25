@@ -19,6 +19,7 @@ You would need Node.js in order to view the project.
 * start the development server with `npm start`
 
 ## App preview
+[Online preview](https://nationalparkseurope.herokuapp.com/)
 ![App preview](https://image.ibb.co/hXGrdd/localhost_3000_i_Pad_1.png)
 
 ## Acknowledgments
