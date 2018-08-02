@@ -1,9 +1,9 @@
 # Beautiful National Parks App
 ## Project Overview:
-This is a project for Udacity Front-End Nanodegree program: the web-application, built in React.js represents the 20 the mos beautiful National Parks of Europe.
+This is a project for Udacity Front-End Nanodegree program: the web-application, built in React.js represents the 20 the most beautiful National Parks of Europe.
 
 ## Project specifics
-This is a single page app, displaying the most beautiful National Parks of Europe, the app is fully responsive and accessive.
+This is a single page app, displaying the most beautiful National Parks of Europe, the app is fully responsive and accessible.
 Project is built using react.js, data stored in json format. The following tools were used:
  * [React starter repository](https://github.com/facebook/create-react-app)
  * The default service worker is used, therefore it will be available only on the production mode
